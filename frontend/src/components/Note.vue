@@ -35,10 +35,10 @@
           </div>
         </div>
         <TextEditor
-          v-if="note.description && html2text(note.description)"
+          v-if="note.content && html2text(note.content)"
           class="min-h-[1.5rem]"
           editor-class="prose-sm text-base text-gray-600"
-          :content="note.description"
+          :content="note.content"
           :editable="false"
         />
       </div>
@@ -95,6 +95,7 @@ function delete_note(name) {
         onClick: ({ close }) => {
           return notes.delete.submit(name).then(() => {
             notes.reload()
+            window.location.reload()
             close()
           })
         },
@@ -110,13 +111,14 @@ function duplicate(note) {
   notes.insert
     .submit({
       title: note.title,
-      description: note.description,
+      content: note.content,
       date: note.date,
       link: note.link,
       sequence_id: notes.data.length + 1,
     })
     .then(() => {
       notes.reload()
+      window.location.reload()
     })
 }
 </script>

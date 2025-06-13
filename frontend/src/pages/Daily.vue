@@ -27,20 +27,15 @@ import { update_note_sequence } from '../data/notes'
 import draggable from 'vuedraggable'
 import { useStore } from '../store'
 import { notes } from '../data/notes'
-import { session } from '../data/session'
 import { watch } from 'vue'
 
 let store = useStore()
 
 watch(
   () => store.today,
-  (new_val) => {
-    notes.filters = [
-      ['date', '=', new_val],
-      ['owner', '=', session.user],
-    ]
-    notes.fetch()
+  () => {
+    notes.fetch() // ✅ Refetch notes when date changes
   },
-  { immediate: true },
+  { immediate: true }
 )
 </script>

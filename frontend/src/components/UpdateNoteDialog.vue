@@ -24,7 +24,7 @@
             <FeatherIcon name="type" class="h-3.5 w-3.5 text-gray-600" />
           </template>
         </FormControl>
-        <FormControl
+        <!-- <FormControl
           type="text"
           label="Link"
           placeholder="Note Link"
@@ -33,15 +33,15 @@
           <template #prefix>
             <FeatherIcon name="link" class="h-3.5 w-3.5 text-gray-600" />
           </template>
-        </FormControl>
+        </FormControl> -->
         <span class="-mb-2 block text-sm leading-4 text-gray-700"
-          >Description</span
+          >Content</span
         >
         <TextEditor
           editor-class="prose-sm border max-w-none rounded-b-lg p-2 overflow-auto h-40 focus:outline-none"
           :fixedMenu="true"
-          :content="note.description"
-          @change="(val) => (note.description = val)"
+          :content="note.Content"
+          @change="(val) => (note.Content = val)"
         />
       </div>
     </template>
@@ -63,8 +63,7 @@ function update_note() {
     .submit({
       name: note.value.name,
       title: note.value.title,
-      description: note.value.description,
-      link: note.value.link,
+      content: note.value.Content,
     })
     .then(() => {
       notes.reload()

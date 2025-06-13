@@ -35,11 +35,18 @@ const newTitle = ref('')
 
 function addNewNote(val) {
   let title = val.trim()
-  let date = props.date || store.date
-  let sequence_id = notes.data.length + 1 || 1
-  notes.insert.submit({ title, date, sequence_id }).then(() => {
+  if (!title) return
+
+  notes.insert.submit({
+    title,
+    content: title,   
+    public: 1,
+  }).then(() => {
     notes.reload()
     newTitle.value = ''
+
   })
+  window.location.reload()
 }
+
 </script>
