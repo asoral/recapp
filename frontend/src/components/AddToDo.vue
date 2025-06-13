@@ -27,7 +27,7 @@ function addNewToDo() {
 
   todos.insert
     .submit({
-      custom_title: newTitle.value,
+      // custom_title: newTitle.value,
       description: newTitle.value,
       status: 'Open',
       allocated_to: session.user, 

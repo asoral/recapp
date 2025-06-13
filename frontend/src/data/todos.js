@@ -5,7 +5,6 @@ export let todos = createListResource({
   doctype: 'ToDo',
   fields: [
     'name',
-    'custom_title', // ✅ required for displaying the title
     'description',
     'status',
     'date',

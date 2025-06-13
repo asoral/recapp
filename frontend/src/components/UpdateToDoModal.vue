@@ -18,7 +18,7 @@
           type="text"
           label="Title"
           placeholder="ToDo Title"
-          v-model="todo.custom_title"
+          v-model="todo.name"
         >
           <template #prefix>
             <FeatherIcon name="type" class="h-3.5 w-3.5 text-gray-600" />
@@ -65,7 +65,7 @@ function updateToDo() {
   todos.setValue
     .submit({
       name: props.todo.name,
-      custom_title: props.todo.custom_title,
+      // custom_title: props.todo.custom_title,
       description: props.todo.description,
     })
     .then(() => {
