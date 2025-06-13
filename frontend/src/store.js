@@ -67,7 +67,6 @@ export const useStore = defineStore('recapp-store', () => {
     date_changed.value = to_date
   }
 
-  // New Note Dialog
   let show_new_dialog = ref(false)
   let new_dailog_date = ref(today.value)
 

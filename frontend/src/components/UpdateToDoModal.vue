@@ -18,22 +18,22 @@
           type="text"
           label="Title"
           placeholder="ToDo Title"
-          v-model="todo.title"
+          v-model="todo.custom_title"
         >
           <template #prefix>
             <FeatherIcon name="type" class="h-3.5 w-3.5 text-gray-600" />
           </template>
         </FormControl>
-        <FormControl
+        <!--  <FormControl
           type="text"
           label="Link"
           placeholder="ToDo Link"
           v-model="todo.link"
-        >
+        > 
           <template #prefix>
             <FeatherIcon name="link" class="h-3.5 w-3.5 text-gray-600" />
-          </template>
-        </FormControl>
+          </template> 
+        </FormControl> -->
         <span class="-mb-2 block text-sm leading-4 text-gray-700">
           Description
         </span>
@@ -65,9 +65,8 @@ function updateToDo() {
   todos.setValue
     .submit({
       name: props.todo.name,
-      title: props.todo.title,
+      custom_title: props.todo.custom_title,
       description: props.todo.description,
-      link: props.todo.link,
     })
     .then(() => {
       todos.reload()
