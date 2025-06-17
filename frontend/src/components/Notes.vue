@@ -29,4 +29,6 @@ import { Button, FeatherIcon } from 'frappe-ui'
 import { useStore } from '../store'
 
 let store = useStore()
+console.log("store==", store.date_text)
+console.log("store date format---", store.date_format)
 </script>

@@ -4,11 +4,22 @@ import { useStore } from '../store'
 
 
 export let notes = createListResource({
+  
   doctype: 'Note',
-  fields: ['name', 'title', 'content', 'public'],
-  filters: [['owner', '=', session.user]],
-  cache: 'Notes',
-  orderBy: 'modified desc',
+  fields: ['name', 'title', 'content', 'public', 'creation'],
+  // 👇 Use dynamic filters
+  filters: () => {
+    const startOfDay = dayjs(store.today).startOf('day').format('YYYY-MM-DD')
+    const endOfDay = dayjs(store.today).endOf('day').format('YYYY-MM-DD')
+    console.log("dateee==", startOfDay)
+    return [
+      ['owner', '=', session.user],
+      ['creation', '>=', startOfDay],
+      ['creation', '<=', endOfDay],
+    ]
+  },
+  cache: false, 
+  orderBy: 'creation desc',
 })
 
 export async function update_note_sequence(_notes, e) {
@@ -19,6 +30,8 @@ export async function update_note_sequence(_notes, e) {
   }
 
   if (e.added?.element) {
+    const store = useStore()
+
     let note = e.added.element
     let note_index = _notes.findIndex((n) => n.name === note.name)
 
@@ -29,7 +42,7 @@ export async function update_note_sequence(_notes, e) {
     })
 
     note.name = _note.name
-    note.date = store.date
+    note.creation = store.date
   }
    window.location.reload()
   }

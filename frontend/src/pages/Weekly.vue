@@ -78,7 +78,7 @@ const notesbyDays = computed(() => {
   })
 
   data.forEach((note) => {
-    note.day = dayjs(note.date).format('dddd')
+    note.day = dayjs(note.creation).format('dddd')
   })
 
   let _days = [
@@ -130,7 +130,7 @@ function rearrangeNotes(e) {
   let notes = []
   notesbyDays.value.forEach((day) => {
     day.notes.forEach((note, index) => {
-      note.date = day.date
+      note.creation = day.date
       note.sequence_id = index + 1
       notes.push(note)
     })

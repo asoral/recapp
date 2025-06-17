@@ -112,7 +112,7 @@ function duplicate(note) {
     .submit({
       title: note.title,
       content: note.content,
-      date: note.date,
+      date: note.creation,
       link: note.link,
       sequence_id: notes.data.length + 1,
     })

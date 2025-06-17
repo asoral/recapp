@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-		"serve": "vite preview",
-		"build": "vite build --base=/assets/recapp/frontend/ && yarn copy-html-entry",
-		"copy-html-entry": "cp ../recapp/public/frontend/index.html ../recapp/www/recapp.html"
+    "serve": "vite preview",
+    "build": "vite build --base=/assets/recapp/frontend/ && yarn copy-html-entry",
+    "copy-html-entry": "cp ../recapp/public/frontend/index.html ../recapp/www/recapp.html"
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
@@ -15,13 +15,13 @@
     "autoprefixer": "^10.4.14",
     "feather-icons": "^4.28.0",
     "frappe-ui": "^0.1.91",
-    "pinia": "^2.0.33",
+    "pinia": "^3.0.3",
     "postcss": "^8.4.5",
     "tailwindcss": "^3.3.3",
     "vite": "^4.4.9",
     "vue": "^3.4.12",
-    "vuedraggable": "^4.1.0",
     "vue-router": "^4.2.2",
-    "vue-template-compiler": "^2.7.14"
+    "vue-template-compiler": "^2.7.14",
+    "vuedraggable": "^4.1.0"
   }
 }

@@ -34,7 +34,7 @@ let store = useStore()
 watch(
   () => store.today,
   () => {
-    notes.fetch() // ✅ Refetch notes when date changes
+    notes.fetch() 
   },
   { immediate: true }
 )
