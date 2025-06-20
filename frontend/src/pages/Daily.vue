@@ -11,7 +11,7 @@
       @change="(e) => update_note_sequence(notes.data, e)"
     >
       <template #item="{ element }">
-        <div class="group flex items-center py-2 last:mb-0 cursor-pointer">
+        <div class="group flex items-center  last:mb-0 cursor-pointer">
           <Note :note="element" />
         </div>
       </template>

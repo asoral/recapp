@@ -13,7 +13,10 @@ export let todos = createListResource({
     'priority',
   
   ],
-  filters: [['allocated_to', '=', session.user], ['status', '!=', 'Cancelled']],
+filters: [
+  ['allocated_to', '=', session.user],
+  ['status', 'not in', ['Cancelled', 'Closed']],
+],
   cache: 'ERPNext ToDos',
   orderBy: 'priority asc',
 })

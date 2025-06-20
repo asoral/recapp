@@ -40,6 +40,11 @@ export const useStore = defineStore('recapp-store', () => {
     router.push('/' + current_view.value.toLowerCase() + (val ? '/' + val : ''))
   })
 
+  // ✅ New: store raw date for comparison
+  let date_value = computed(() => {
+    return dayjs(today.value).format('YYYY-MM-DD')
+  })
+
   // View Header
   let date_text = computed(() => {
     if (current_view.value == 'Daily') {
@@ -91,14 +96,15 @@ export const useStore = defineStore('recapp-store', () => {
     date_format,
     date,
     today,
+    date_text,
+    date_value, // ✅ exported
+    date_changed,
+    hideEmptyDays,
+    hideToDo,
     show_new_dialog,
     new_dailog_date,
     show_edit_dialog,
     edit_dailog_note,
-    date_text,
-    date_changed,
-    hideEmptyDays,
-    hideToDo,
     change_to_previous_date,
     change_to_next_date,
     open_new_dialog,

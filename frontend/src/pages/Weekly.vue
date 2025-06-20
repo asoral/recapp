@@ -22,7 +22,7 @@
         data-name="weekly"
       >
         <template #item="{ element }">
-          <div class="group flex items-center py-2 last:mb-0 cursor-pointer">
+          <div class="group flex items-center  last:mb-0 cursor-pointer">
             <Note :note="element" />
           </div>
         </template>

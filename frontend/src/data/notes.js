@@ -4,24 +4,16 @@ import { useStore } from '../store'
 
 
 export let notes = createListResource({
-  
   doctype: 'Note',
-  fields: ['name', 'title', 'content', 'public', 'creation'],
-  // 👇 Use dynamic filters
-  filters: () => {
-    const startOfDay = dayjs(store.today).startOf('day').format('YYYY-MM-DD')
-    const endOfDay = dayjs(store.today).endOf('day').format('YYYY-MM-DD')
-    console.log("dateee==", startOfDay)
-    return [
-      ['owner', '=', session.user],
-      ['creation', '>=', startOfDay],
-      ['creation', '<=', endOfDay],
-    ]
-  },
-  cache: false, 
-  orderBy: 'creation desc',
+  fields: ['name', 'title', 'creation', 'content'],
+  filters: [['owner', '=', session.user]],
+  orderBy: 'creation asc',
+  transform: (note) => {
+    note.date = dayjs(note.creation).format('YYYY-MM-DD')  // ✅ FIXED
+    return note
+  }
+  
 })
-
 export async function update_note_sequence(_notes, e) {
   if (e.removed?.element) {
     let note = e.removed.element
@@ -38,11 +30,19 @@ export async function update_note_sequence(_notes, e) {
     let _note = await notes.insert.submit({
       title: note.title,
       content: note.content || '', 
-      public: 1,
     })
 
     note.name = _note.name
-    note.creation = store.date
+    note.date = store.date
+    console.log("nodedate", note.date)
+    console.log("nodedate--", note.creation)
   }
+  console.log("nodedate", note.date)
+  console.log("nodedate--", note.creation)
    window.location.reload()
+   
   }
+
+
+
+

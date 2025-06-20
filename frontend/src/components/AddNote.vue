@@ -40,7 +40,6 @@ function addNewNote(val) {
   notes.insert.submit({
     title,
     content: title,   
-    public: 1,
   }).then(() => {
     notes.reload()
     newTitle.value = ''

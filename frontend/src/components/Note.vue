@@ -1,12 +1,14 @@
 <template>
-  <div class="flex items-start gap-2 w-full hover:bg-gray-50 p-1 rounded">
-    <div
-      class="flex opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
-    >
+  <div
+    v-if="isVisible"
+    class="flex items-start gap-2 w-full hover:bg-gray-50 p-1 rounded"
+  >
+    <div class="flex opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
       <Button class="drag-handle p-0.5" variant="ghosted" title="Drag to move">
         <DragIcon />
       </Button>
     </div>
+
     <div
       class="flex flex-1 items-start gap-3"
       @click="store.open_edit_dialog(note)"
@@ -43,9 +45,8 @@
         />
       </div>
     </div>
-    <div
-      class="transition-opacity duration-500 ease-in-out opacity-0 group-hover:opacity-100"
-    >
+
+    <div class="transition-opacity duration-500 ease-in-out opacity-0 group-hover:opacity-100">
       <Button
         class="!p-0.5 !text-gray-500"
         icon="copy"
@@ -69,19 +70,34 @@ import { FeatherIcon, TextEditor } from 'frappe-ui'
 import DragIcon from './icons/DragIcon.vue'
 import { notes } from '../data/notes'
 import { html2text } from '../utils'
-import { inject } from 'vue'
+import { inject, computed } from 'vue'
 import { useStore } from '../store'
+import dayjs from 'dayjs'
 
 let store = useStore()
 
-let props = defineProps({
+const props = defineProps({
   note: {
     type: Object,
     required: true,
   },
 })
 
-let dialog = inject('$dialog')
+const creationDate = computed(() =>
+  dayjs(props.note.creation).format('YYYY-MM-DD')
+)
+
+const isVisible = computed(() =>
+  creationDate.value === store.date_value
+)
+
+// Debug (optional)
+console.log('Note Title:', props.note.title)
+console.log('Note Creation Date:', creationDate.value)
+console.log('Store Date Value:', store.date_value)
+console.log('Visible:', isVisible.value)
+
+const dialog = inject('$dialog')
 
 function delete_note(name) {
   dialog({
