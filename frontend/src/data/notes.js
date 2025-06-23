@@ -34,11 +34,9 @@ export async function update_note_sequence(_notes, e) {
 
     note.name = _note.name
     note.date = store.date
-    console.log("nodedate", note.date)
-    console.log("nodedate--", note.creation)
+    
   }
-  console.log("nodedate", note.date)
-  console.log("nodedate--", note.creation)
+ 
    window.location.reload()
    
   }

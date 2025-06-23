@@ -23,7 +23,7 @@
                 class="text-lg leading-normal font-medium select-none"
                 :class="{ 'line-through': todo.status === 'Closed' }"
               >
-                {{ todo.custom_title  || todo.description}}
+                {{  todo.description}}
               </div>
             </div>
           </div>
@@ -44,6 +44,7 @@ import { FeatherIcon, Button, Checkbox } from 'frappe-ui'
 import { todos } from '../data/todos'
 import DragIcon from './icons/DragIcon.vue'
 import { ref, inject } from 'vue'
+import { session } from '../data/session' // ✅ Import session for allocated_to
 
 const props = defineProps({
   todo: Object,
@@ -83,14 +84,28 @@ function deleteTodo(name) {
   })
 }
 
+// function duplicate(todo) {
+//   todos.insert
+//     .submit({
+//       custom_title: todo.custom_title,
+//       description: todo.description,
+//       status: 'Open',
+//     })
+//     .then(() => todos.fetch())
+//     window.location.reload() 
+// }
+
 function duplicate(todo) {
   todos.insert
     .submit({
-      custom_title: todo.custom_title,
       description: todo.description,
-      status: 'Open',
-    })
-    .then(() => todos.fetch())
-}
+     status:'Open',
+     allocated_to: session.user, 
 
+    })
+    .then(() => {
+      todos.reload()
+      window.location.reload()
+    })
+}
 </script>

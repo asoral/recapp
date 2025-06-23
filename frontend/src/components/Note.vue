@@ -91,11 +91,6 @@ const isVisible = computed(() =>
   creationDate.value === store.date_value
 )
 
-// Debug (optional)
-console.log('Note Title:', props.note.title)
-console.log('Note Creation Date:', creationDate.value)
-console.log('Store Date Value:', store.date_value)
-console.log('Visible:', isVisible.value)
 
 const dialog = inject('$dialog')
 
