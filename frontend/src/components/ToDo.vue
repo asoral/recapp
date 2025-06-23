@@ -15,6 +15,7 @@
               class="p-0.5 text-gray-500"
               @change="markAsCompleted"
             />
+            
           </div>
           <div class="title-description">
             <div class="title-link flex items-center gap-2 min-h-7">
