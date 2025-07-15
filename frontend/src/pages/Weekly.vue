@@ -59,8 +59,8 @@ watch(
   () => store.today,
   () => {
     notes.filters = [
-      ['date', '>=', startDate.value.format('YYYY-MM-DD')],
-      ['date', '<=', endDate.value.format('YYYY-MM-DD')],
+      ['creation', '>=', startDate.value.format('YYYY-MM-DD')],
+      ['creation', '<=', endDate.value.format('YYYY-MM-DD')],
       ['owner', '=', session.user],
     ]
     notes.fetch()
